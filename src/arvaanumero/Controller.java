@@ -2,7 +2,7 @@
  * Sample Skeleton for 'Untitled' Controller Class
  */
 
-package niko.ArvaaNumero;
+package arvaanumero;
 
 import java.net.URL;
 import java.util.Random;
@@ -83,6 +83,7 @@ public class Controller {
         arvausTextField.setText("");
         palauteLabel.setText("");
         rootnode.setStyle("-fx-background: white;");
+        arvausTextField.setEditable(true);
     }
 
 
@@ -113,6 +114,7 @@ public class Controller {
                 //oikein
                 palauteLabel.setText("Oikein!");
                 rootnode.setStyle("-fx-background: green;");
+                arvausTextField.setEditable(false);
             }
             else if(vastaus > oikeaNumero) {
                 //suuri
@@ -128,11 +130,15 @@ public class Controller {
 
         }
 
-
+        edellinenVastaus = vastaus;
     }
 
     private void asetaVari(int vastaus) {
-        if(Math.abs(oikeaNumero - edellinenVastaus) > Math.abs(oikeaNumero - vastaus)) {
+
+        int erotus = Math.abs(oikeaNumero - vastaus);
+        int edellinenErotus = Math.abs(oikeaNumero - edellinenVastaus);
+
+        if(erotus <= edellinenErotus) {
             // closer
             rootnode.setStyle("-fx-background: blue;");
         }
